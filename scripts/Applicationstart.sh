@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Running Hook: applicationstart.sh"
-cd /home/ubuntu/Woloo-API
+cd /home/ubuntu/sample-project
 source /etc/profile
 # Start PM2
 pm2 start pm2.config.js  2>&1
