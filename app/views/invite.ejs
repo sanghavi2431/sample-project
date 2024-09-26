@@ -1,0 +1,192 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> <%= invited_by[0].id %></h1>
+</body>
+</html> -->
+<!DOCTYPE html>
+<head>
+    <link href="/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32?family=Square721+BT" rel="stylesheet" type="text/css"/>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-reboot.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<main>   
+    <section style="position: relative;">
+        
+        <div>
+            <div class="col-sm-12 main-header">
+                <span class="prefix1"><img src="image/back-icon.png"></span>
+                <div class="header-title"><img src="/views/image/logo.png" class="img-size"/></div>
+            </div>
+        </div>
+        
+        
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-sm-12 pl-0 pr-0 my-4">
+                    <h3 class="head-title mb-4 mt-4">You have got a gift from your friend!</h3>
+                </div>
+                <div class="img-align mb-0 w-100"><img src="/img/back-icon.png" class="px-5" style="width:80%;max-width:320px;"/></div>
+                <div class="col-sm-12"><hr/></div>
+             
+                <% if(invited_by[0].avatar!=null){ %>
+                <div class="offset-sm-3 col-sm-6 lign-center text-center"><img class="img-fix" src="storage/app/public/'.$invited_by->avatar)}}"/></div> 
+                <% }else{ %>
+                <div class="offset-sm-3 col-sm-6 lign-center text-center abc"><img class="img-fix" src="storage/app/public/users/default.png"/></div> 
+                <% } %>
+                <div class="col-sm-12 pl-0 pr-0 my-2">
+                    <h3 class="head-title mb-3 mt-3">Your friend  <%= invited_by[0].name %> has sent you a gift to show care and concern.</h3>
+                </div>
+                <div class="col-sm-12 my-2">
+                    <% if(success || finduser!=null){ %>
+                    <h3 class="head-title mb-3 mt-3 bkg-box">Gift Accepted</h3>
+                    <% }else{ %>
+                     <h3 class="head-title mb-3 mt-3 bkg-box"><a  data-toggle="modal" data-target="#acceptModal">Accept your gift & Say thank you.</a></h3>
+                     <% } %>
+                </div>  
+            </div>
+        </div>
+        
+        
+        
+            <div class="row" style="margin:0px;margin-bottom: 100px;">
+                <div class="main-footer p-0 pl-0 pr-0">
+                    <div class="d-flex flex-row">
+                        <div class="col p-0 bottom-menu">
+                            <div class="img-icon"><img src="/image/W20.png" style="height:40px;"/></div>
+                            <label>Wo-lo Chat</label>
+                        </div>
+                        <div class="col p-0 bottom-menu">
+                            <div class="img-icon"><img src="/image/period-tracker.png" style="height:40px;"/></div>
+                            <label>Period Tracker</label></div>
+                        <div class="col p-0 bottom-menu-center" style="position: relative;">
+                                <div class="img-box-bot"><img src="image/W41.png" class="img-bottom" /></div>
+                        </div>
+                        <div class="col p-0 bottom-menu">
+                            <div class="img-icon"><img src="image/W30.png" style="height:40px;"/></div>
+                            <label>My Account</label> </div>
+                        <div class="col p-0 bottom-menu">
+                            <div class="img-icon"><img src="image/W29.png" style="height:40px;"/></div>
+                            <label>Friend</label></div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+
+    </section>     
+</main>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <p>Access Through Woloo App</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="modal fade" id="acceptModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100">Details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- @if(count($errors->all()) > 0)
+    <div class="alert alert-danger" role="alert">
+        <p><b>Required Fields Missing!</b></p>
+        <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif -->
+            <!-- <form > -->
+                 <!-- @csrf -->
+                <div class="modal-body">
+                  <div class="col-md-12 p-0">
+                  	<lable>Name</lable>
+                  	<input type="text" id="name" required name="name" class="form-control" />
+                  </div>
+                  <div class="col-md-12 p-0">
+                  	<lable>Email</lable>
+                  	<input type="text" id="email" required name="email" class="form-control" />
+                  </div>
+                 <div class="col-md-12 p-0 mb-2">
+                  	<lable>Password</lable>
+                  	<input type="text" id="password" required name="password" class="form-control"  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$"/>
+                  	<span style="font-size:12px;">Note* :- Password must contain one lower case letter, one upper case letter, one number and one speacial character and must be atleast 8 digit</span>
+                  </div>
+                </div>
+                <input type="hidden" id="mobile_number" value="<%= mobile_number %>" name="mobile_number">
+                <input type="hidden"  id="invited_by_id" value="<%= invited_by[0].id %>" name="invited_by_id">
+                <input type="hidden"  id="baseUrl" value="<%= baseUrl %>" name="baseUrl">
+
+                <div class="modal-footer">
+                  <button type="submit" onclick="btnClick()" class="btn btn-info" style="background-color:#fff212;color:#4b4b4d" id="register">Submit</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color:#4b4b4d;color:#fff212">Close</button>
+                </div>
+            <!-- </form> -->
+      </div>
+    </div>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="js/bootstrap.bundle.min.js"></script> 
+    <script >
+      async function btnClick(){
+        let obj={}
+        let name=document.getElementById("name").value
+        let email=document.getElementById("email").value
+        let password=document.getElementById("password").value
+        let mobile_number=document.getElementById("mobile_number").value
+        let invited_by_id=document.getElementById("invited_by_id").value
+        let baseUrl=document.getElementById("baseUrl").value
+        obj.name=name
+        obj.email=email
+        obj.password=password
+        obj.mobile_number=mobile_number
+        obj.invited_by_id=invited_by_id
+    
+
+        let response = await axios.post(`http://${baseUrl}/api/wolooGuest/registration`,obj);
+        if(response.data.success){
+          alert("Registaration Successfully done")
+
+        }
+        else{
+          alert("Try again")
+        }
+      }
+    </script>    
+
+</body>
+</html>

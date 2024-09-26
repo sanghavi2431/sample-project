@@ -1,0 +1,106 @@
+
+@import url("../font/@font-face/7b6a3052ac99368df5c80f3fd161fe32?family=Square721+BT");
+
+@font-face {font-family: "Square721 BT"; 
+    src: url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.eot"); 
+    src: url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.eot?#iefix") format("embedded-opentype"),
+    url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.woff2") format("woff2"), 
+    url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.woff") format("woff"), 
+    url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.ttf") format("truetype"), 
+    url("/font/@font-face/7b6a3052ac99368df5c80f3fd161fe32.svg#Square721 BT") format("svg"); }
+
+
+.main-header{
+    background-color:#4b4b4d;
+    padding:10px;
+    text-align: center;
+    width:100%;
+}
+.img-size{
+    width:60px;
+}
+.prefix1{
+    float: left;
+    position: absolute;
+    left: 18px;
+    top: 18px;
+}
+.prefix1 img{
+    width:28px;
+}
+.head-title{
+    font-size:1.2rem;
+    text-align: center;
+    /* font-weight: bold; */
+    font-family:Square721 BT !important;
+
+}
+.img-fix{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.img-align{
+    text-align: center;
+}
+.bkg-box{
+    background-color:#fff212;
+    padding:12px;
+}
+.main-footer{
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    width:100%;
+    background-color:#4b4b4d;
+    padding:10px;
+    color:#fff212;
+}
+.bottom-menu{
+    text-align: center;
+    font-family: Square721 BT !important;
+    font-size: 10px;
+    padding: 6px 0px !important;
+}
+.bottom-menu-center{
+    /* width:28%; */
+    text-align: center;
+    /* background-color:#fff; */
+    font-family:Square721 BT !important;
+    font-size:12px;
+}
+.img-bottom{
+    width:55px;
+    height:55px;
+    padding: 0px;
+}
+
+ .img-box-bot{
+    width:80px;
+    text-align: center;
+    height: 80px;
+    margin: auto;
+    border-radius: 50%;
+    background: #fff212;
+    overflow: hidden;
+    padding-top: 8px;
+    margin-top: -45px;
+    border: 4px solid#f2f2f2;
+ }
+/* .img-box-bot{
+    width:100px;
+    text-align: center;
+    height:100px;
+    margin: auto;
+    border-radius: 50%;
+    
+    background: #fff212;
+    overflow: hidden;
+    padding-top: 8px;
+    position: absolute;
+    top: -50px;
+    
+    border:2px solid#f2f2f2;
+} */
