@@ -36,7 +36,3 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/woloo:${{ github.sha }}
 
-    # Optional: Run Docker container for testing purposes on GitHub runner
-    - name: Run Docker container
-      run: |
-        docker run -d --name my-node-app -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/woloo:${{ github.sha }}
