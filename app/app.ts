@@ -16,5 +16,5 @@ app.use(express.static('./assets'));
 const server = app.listen(PORT, () => {
   LOGGER.info(`Server running at ${PORT}`);
 });
-
+console.log('hi this is docker file test')
 server.setTimeout(600000); 
