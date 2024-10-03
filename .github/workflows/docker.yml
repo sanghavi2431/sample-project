@@ -24,25 +24,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Log in to Docker Hub (replace with your Docker Hub credentials)
-    - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-
-    # Remove old Docker image (optional, only if the image exists)
-    - name: Remove old Docker image
-      run: |
-        docker image rm ${{ secrets.DOCKER_USERNAME }}/testcicd:latest || true
-
     # Build Docker image
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }} .
 
-    # Tag the new image as 'latest'
-    - name: Tag Docker image as 'latest'
-      run: docker tag ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/testcicd:latest
+    # Log in to Docker Hub (replace with your Docker Hub credentials)
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     # Push the Docker image to Docker Hub
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:latest
+    - name: Push Docker image to Docker Hub
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }}
