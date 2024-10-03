@@ -26,7 +26,7 @@ jobs:
 
     # Build Docker image
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/woloo:${{ github.sha }} .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }} .
 
     # Log in to Docker Hub (replace with your Docker Hub credentials)
     - name: Log in to Docker Hub
@@ -34,5 +34,5 @@ jobs:
 
     # Push the Docker image to Docker Hub
     - name: Push Docker image to Docker Hub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/woloo:${{ github.sha }}
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:${{ github.sha }}
 
