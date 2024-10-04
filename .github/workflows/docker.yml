@@ -10,40 +10,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    # Set up Node.js
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
-    # Install dependencies
-    - name: Install dependencies
-      run: npm install
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    # Log in to Docker Hub (replace with your Docker Hub credentials)
-    - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      # Log in to Docker Hub (replace with your Docker Hub credentials)
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-    # Step to remove old 'latest' image (if exists)
-    - name: Remove old latest Docker image
-      run: |
-        old_image_digest=$(curl -s -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
-        "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/tags/latest" \
-        | jq -r '.images[0].digest')
+      # Step to remove old 'latest' image (if exists)
+      - name: Remove old latest Docker image
+        run: |
+          old_image_digest=$(curl -s -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
+          "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/tags/latest" \
+          | jq -r '.images[0].digest')
 
-        if [ "$old_image_digest" != "null" ]; then
-          curl -X DELETE -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
-          "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/manifests/$old_image_digest"
-        fi
+          # Check if the old image digest is not null or empty
+          if [ "$old_image_digest" != "null" ] && [ -n "$old_image_digest" ]; then
+            echo "Deleting old image with digest: $old_image_digest"
+            # Attempt to delete the old image
+            curl -X DELETE -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
+            "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/manifests/$old_image_digest" || echo "Old image deletion failed, but continuing."
+          else
+            echo "No old image found to delete."
+          fi
 
-    # Build Docker image with 'latest' tag
-    - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/testcicd:latest .
+      # Build Docker image with 'latest' tag
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/testcicd:latest .
 
-    # Push the Docker image to Docker Hub with 'latest' tag
-    - name: Push Docker image to Docker Hub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:latest
+      # Push the Docker image to Docker Hub with 'latest' tag
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/testcicd:latest
