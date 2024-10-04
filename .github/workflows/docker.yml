@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Log in to Docker Hub (replace with your Docker Hub credentials)
+      # Log in to Docker Hub
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
@@ -35,12 +35,14 @@ jobs:
           "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/tags/latest" \
           | jq -r '.images[0].digest')
 
-          # Check if the old image digest is not null or empty
+          # Log the old image digest for debugging
+          echo "Old image digest: $old_image_digest"
+
           if [ "$old_image_digest" != "null" ] && [ -n "$old_image_digest" ]; then
             echo "Deleting old image with digest: $old_image_digest"
-            # Attempt to delete the old image
-            curl -X DELETE -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
-            "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/manifests/$old_image_digest" || echo "Old image deletion failed, but continuing."
+            response=$(curl -X DELETE -H "Authorization: Bearer ${{ secrets.DOCKER_TOKEN }}" \
+            "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/testcicd/manifests/$old_image_digest")
+            echo "Delete response: $response"  # Log the response from delete command
           else
             echo "No old image found to delete."
           fi
