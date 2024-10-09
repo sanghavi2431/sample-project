@@ -15,7 +15,7 @@ fi
 
 # Copy the new pm2.config.js from S3
 echo "Copying pm2.config.js from S3"
-sudo aws s3 cp s3://practiceforcicd/practiceforcicd/pm2.config.js /home/ubuntu/sample-project/
+sudo aws s3 cp s3://sanghavi/sanghavi24/pm2.config.js /home/ubuntu/sample-project/
 
 # Reload Nginx service
 sudo service nginx reload
