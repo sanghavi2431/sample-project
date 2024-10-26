@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/sample-project  # Adjust based on your EC2 directory structure 
+    destination: /home/ubuntu/sample-project-1  # Adjust based on your EC2 directory structure 
 
 hooks:
   AfterInstall:
