@@ -6,10 +6,6 @@ files:
     destination: /home/ubuntu/sample-project  # Adjust based on your EC2 directory structure 
 
 hooks:
-  BeforeInstall:
-    - location: scripts/BeforeInstallHook.sh
-      timeout: 300
-      runas: root
   AfterInstall:
     - location: scripts/AfterInstallHook.sh
       timeout: 300
