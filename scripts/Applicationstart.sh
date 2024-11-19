@@ -10,4 +10,5 @@ if [ $? != "0" ]; then
 else
    echo "PM2 started";
 fi
+pm2 save
 exit 0
