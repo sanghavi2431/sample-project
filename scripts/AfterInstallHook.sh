@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Woloo-Task-Management-1
 PIDS=$(ps -aef | grep "node /home/ubuntu/sample-project/bin/app.js" | grep -v grep | awk '{print $2}')
 if [ -n "$PIDS" ]; then
     for PID in $PIDS; do
