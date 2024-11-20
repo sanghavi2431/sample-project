@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-PIDS=$(ps -aef | grep "node /home/ubuntu/sample-project*/bin/app.js" | grep -v grep | awk '{print $2}')
+PIDS=$(ps -aef | grep "node /home/ubuntu/sample-project/bin/app.js" | grep -v grep | awk '{print $2}')
 if [ -n "$PIDS" ]; then
     for PID in $PIDS; do
         sudo kill -9 $PID
